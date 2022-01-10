@@ -59,13 +59,15 @@ public class Calculator {
             Boolean potionImproving = true;
 
             while(potionImproving){
-                //We add one of our current ingredient and remove one from base (which starts off as the entire potion).
-                // If it's not an adder we add one to the total amount as we are not removing a base.
+                //We add one of our current ingredient and if an adder remove one from base (which starts off as the entire potion).
+                //We only add to the total ingredients if it is a multiplier as we aren't replacing the base.
                 ingredient.setQuantityInPotion(ingredient.getQuantityInPotion()+1);
-                bestBase.setQuantityInPotion(bestBase.getQuantityInPotion()-1);
-                if(!ingredient.getAdder()){
-                    totalIngredients+=1;
+                if(ingredient.getAdder()){
+                    bestBase.setQuantityInPotion(bestBase.getQuantityInPotion()-1);
                 }
+                else totalIngredients+=1;
+
+
 
                 currentPotion = brewPotion(potionIngredients,totalIngredients);
 
@@ -76,8 +78,13 @@ public class Calculator {
                 else{
                     potionImproving = false;
                     ingredient.setQuantityInPotion(ingredient.getQuantityInPotion()-1);
-                    bestBase.setQuantityInPotion(bestBase.getQuantityInPotion()+1);
-                    totalIngredients-=1;
+                    //We only want to add one to the base if it's an adder. Otherwise removing one unit of the ingredient is sufficient.
+                    if(ingredient.getAdder()){
+                        bestBase.setQuantityInPotion(bestBase.getQuantityInPotion()+1);
+                    }
+                    else{
+                        totalIngredients-=1;
+                    }
                 }
             }
         }
