@@ -183,6 +183,7 @@ public class Calculator {
                 for(Ingredient ingredient: allIngredients){
                     if(ingredient.getDH() > 0.0 && ingredient.getDHM() > 0.0){
                         bestAdderMultiplier.add(ingredient);
+                        bestMultipliers.removeAll(bestAdderMultiplier);
                     }
                 }
                 break;
