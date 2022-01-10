@@ -91,7 +91,7 @@ public class Calculator {
         return bestPotion;
     }
 
-
+    //Todo we need to refactor for task specific logic.
     private Potion brewPotion(List<Ingredient> potionIngredients, Integer totalIngredientCount){
         Potion brewedPotion = new Potion();
 
@@ -101,7 +101,7 @@ public class Calculator {
         Double multiplierAggregated = 0.0;
         Double dhAggregated = 0.0;
 
-        //will wrap this into Task logic specific to DH TODO
+
         for(Ingredient ingredient:potionIngredients){
             if(ingredient.getDHM()>0 && ingredient.getQuantityInPotion()!=0){
                 Double A = ingredient.getDHM();
@@ -109,7 +109,7 @@ public class Calculator {
                 Double product = 1+A*Math.sqrt(x);
                 multipliers.add(product);
             }
-            if(ingredient.getDH()>0){
+            if(ingredient.getDH()>0 && ingredient.getQuantityInPotion()!=0){
                 directhealers.add(ingredient.getQuantityInPotion() * ingredient.getDH());
             }
         }
@@ -126,12 +126,7 @@ public class Calculator {
 
         //We get the aggregatedDH
         for(Double directhealer: directhealers){
-            if(dhAggregated == 0.0){
-                dhAggregated = directhealer;
-            }
-            else{
-                dhAggregated = dhAggregated+directhealer;
-            }
+            dhAggregated += directhealer;
         }
         dhAggregated = dhAggregated/totalIngredientCount;
 
@@ -145,7 +140,8 @@ public class Calculator {
         return brewedPotion;
     }
 
-
+//Utility Functions
+//Todo private void brewSpecificPotion(){}
     private void setBestIngredients(Task task){
         switch (task){
             case DH:
