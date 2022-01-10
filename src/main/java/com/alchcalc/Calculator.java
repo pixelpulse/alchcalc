@@ -159,6 +159,14 @@ public class Calculator {
                     }
                 }
 
+                //We add our ingredients that are both Adder & Multiplier (eg. Musefruit)
+                for(Ingredient ingredient: allIngredients){
+                    if(ingredient.getDH() > 0.0 && ingredient.getDHM() > 0.0){
+                        bestAdderMultiplier.add(ingredient);
+                    }
+                    allIngredients.removeAll(bestAdderMultiplier);
+                }
+
                 //Find the max number of multipliers which exist
                 Integer multiplierCount = 0;
                 for(Ingredient ingredient: allIngredients){
@@ -170,22 +178,18 @@ public class Calculator {
                 if(multiplierCount<15){
                     maxAmountofMultipliers = multiplierCount;
                 }
-                else maxAmountofMultipliers = 14;
+                //We make sure to subtract the amount of addermultipliers from the multipliers to make room for them in the potion
+                else maxAmountofMultipliers = 15-bestAdderMultiplier.size();
 
-                //We get the best 15 or less multiplies
+
+                //We get the best multipliers
                 DHMComparator dhmComparator = new DHMComparator();
                 allIngredients.sort(dhmComparator);
                 for(int i=0; i<maxAmountofMultipliers; i++){
                     bestMultipliers.add(allIngredients.get(i));
                 }
 
-                //We add our ingredients that are both Adder & Multiplier (eg. Musefruit)
-                for(Ingredient ingredient: allIngredients){
-                    if(ingredient.getDH() > 0.0 && ingredient.getDHM() > 0.0){
-                        bestAdderMultiplier.add(ingredient);
-                        bestMultipliers.removeAll(bestAdderMultiplier);
-                    }
-                }
+
                 break;
 
             case DP:
