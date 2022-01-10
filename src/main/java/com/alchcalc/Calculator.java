@@ -19,18 +19,17 @@ public class Calculator {
     private List<Ingredient> bestAdderMultiplier = new ArrayList<>();
     private Ingredient bestBase;
 
-    public void run(Task task) throws IOException {
-        makeBestPotion(task);
+    public void run(Task task, Integer PU) throws IOException {
+        makeBestPotion(task, PU);
     }
 
-    private void makeBestPotion(Task task){
+    private void makeBestPotion(Task task, Integer PU){
         allIngredients = ingredientHandler.getIngredientList();
         setBestIngredients(task);
 
-//        findOptimizedBaseIngredients(10, true);
 
         //printing our results. We'll need to get them off the potion eventually
-        (optimizeVolumizers(10, true)).print();
+        (optimizeVolumizers(PU, true)).print();
     }
 
     private Potion optimizeMultipliers(){
@@ -211,6 +210,14 @@ public class Calculator {
                     totalVolumeNeeded = 101;
                 }
                 break;
+            case 15:
+                if(isCladeGift){
+                    totalVolumeNeeded = 141;
+                }
+                else{
+                    totalVolumeNeeded = 151;
+                }
+                break;
             case 20:
                 if(isCladeGift){
                     totalVolumeNeeded = 201;
@@ -289,6 +296,62 @@ public class Calculator {
                 }
                 else{
                     totalVolumeNeeded = 2001;
+                }
+                break;
+            case 300:
+                if(isCladeGift){
+                    totalVolumeNeeded = 2731;
+                }
+                else{
+                    totalVolumeNeeded = 3001;
+                }
+                break;
+            case 500:
+                if(isCladeGift){
+                    totalVolumeNeeded = 4551;
+                }
+                else{
+                    totalVolumeNeeded = 5001;
+                }
+                break;
+            case 600:
+                if(isCladeGift){
+                    totalVolumeNeeded = 5461;
+                }
+                else{
+                    totalVolumeNeeded = 6001;
+                }
+                break;
+            case 700:
+                if(isCladeGift){
+                    totalVolumeNeeded = 6371;
+                }
+                else{
+                    totalVolumeNeeded = 7001;
+                }
+                break;
+            case 800:
+                if(isCladeGift){
+                    totalVolumeNeeded = 7281;
+                }
+                else{
+                    totalVolumeNeeded = 8001;
+                }
+                break;
+            case 900:
+                if(isCladeGift){
+                    totalVolumeNeeded = 8191;
+                }
+                else{
+                    totalVolumeNeeded = 9001;
+                }
+                break;
+            case 1000:
+                if(isCladeGift){
+                    totalVolumeNeeded = 9091;
+                }
+                else{
+                    totalVolumeNeeded = 10001;
                 }
                 break;
         }
