@@ -41,6 +41,7 @@ public class Calculator {
     private Potion optimizeVolumizers(Integer potionUnits, Boolean isCladeGift){
         List<Ingredient> potionIngredients = new ArrayList<>();
         Integer totalVolumeNeeded = getVolumeNeeded(potionUnits, isCladeGift);
+        Integer totalIngredients = totalVolumeNeeded;
         Potion currentPotion;
         Potion bestPotion;
 
@@ -50,8 +51,8 @@ public class Calculator {
         potionIngredients.addAll(bestAdders);
         potionIngredients.addAll(bestMultipliers);
 
-        bestBase.setQuantityInPotion(totalVolumeNeeded);
-        bestPotion = brewPotion(potionIngredients, totalVolumeNeeded);
+        bestBase.setQuantityInPotion(totalIngredients);
+        bestPotion = brewPotion(potionIngredients, totalIngredients);
 
         //We iterate through adding ingredients (and replacing one base) one at a time to see if the potion has been improved
         for(Ingredient ingredient: potionIngredients.subList( 1, potionIngredients.size() )){
@@ -64,7 +65,7 @@ public class Calculator {
 
 //                System.out.println("testing ingredient:" +ingredient.getName()+ " with count:"+ ingredient.getQuantityInPotion());
 
-                currentPotion = brewPotion(potionIngredients,totalVolumeNeeded);
+                currentPotion = brewPotion(potionIngredients,totalIngredients);
 
                 //We compare the current potion with the base potion, if it's worse we continue
                 if(currentPotion.getDHAmount() > bestPotion.getDHAmount()){
@@ -72,6 +73,8 @@ public class Calculator {
                 }
                 else{
                     potionImproving = false;
+                    ingredient.setQuantityInPotion(ingredient.getQuantityInPotion()-1);
+                    bestBase.setQuantityInPotion(bestBase.getQuantityInPotion()+1);
                 }
             }
         }
@@ -80,10 +83,6 @@ public class Calculator {
 
 
     private Potion brewPotion(List<Ingredient> potionIngredients, Integer totalIngredientCount){
-        //[(1 + Ax^.5) * (1 + Ax^.5) >>>>>>] * DH
-        //x is the % of the potion the item takes up
-        //A is the items respective multiplicative value. such as .21 for white cavolo.
-
         Potion brewedPotion = new Potion();
 
         List<Double> multipliers = new ArrayList<>();
