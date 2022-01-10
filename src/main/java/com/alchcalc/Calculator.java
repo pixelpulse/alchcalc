@@ -160,8 +160,9 @@ public class Calculator {
                     if(ingredient.getDH() > 0.0 && ingredient.getDHM() > 0.0){
                         bestAdderMultiplier.add(ingredient);
                     }
-                    allIngredients.removeAll(bestAdderMultiplier);
                 }
+                allIngredients.removeAll(bestAdderMultiplier);
+
 
                 //Find the max number of multipliers which exist
                 Integer multiplierCount = 0;
