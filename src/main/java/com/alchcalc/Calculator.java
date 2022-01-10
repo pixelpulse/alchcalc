@@ -59,9 +59,13 @@ public class Calculator {
             Boolean potionImproving = true;
 
             while(potionImproving){
-                //We add one of our current ingredient and remove one from base (which starts off as the entire potion)
+                //We add one of our current ingredient and remove one from base (which starts off as the entire potion).
+                // If it's not an adder we add one to the total amount as we are not removing a base.
                 ingredient.setQuantityInPotion(ingredient.getQuantityInPotion()+1);
                 bestBase.setQuantityInPotion(bestBase.getQuantityInPotion()-1);
+                if(!ingredient.getAdder()){
+                    totalIngredients+=1;
+                }
 
 //                System.out.println("testing ingredient:" +ingredient.getName()+ " with count:"+ ingredient.getQuantityInPotion());
 
@@ -75,6 +79,7 @@ public class Calculator {
                     potionImproving = false;
                     ingredient.setQuantityInPotion(ingredient.getQuantityInPotion()-1);
                     bestBase.setQuantityInPotion(bestBase.getQuantityInPotion()+1);
+                    totalIngredients-=1;
                 }
             }
         }
