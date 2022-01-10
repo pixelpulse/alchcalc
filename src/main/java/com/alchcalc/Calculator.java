@@ -48,7 +48,7 @@ public class Calculator {
         potionIngredients.add(bestBase);
         potionIngredients.addAll(bestAdderMultiplier);
         potionIngredients.addAll(bestAdders);
-//        potionIngredients.addAll(bestMultipliers);
+        potionIngredients.addAll(bestMultipliers);
 
         bestBase.setQuantityInPotion(totalVolumeNeeded);
         bestPotion = brewPotion(potionIngredients, totalVolumeNeeded);
