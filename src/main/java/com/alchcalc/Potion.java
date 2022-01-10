@@ -8,6 +8,7 @@ import java.util.List;
 public class Potion {
     Double DHAmount;
     List<Ingredient> potionIngredients = new ArrayList<>();
+    Integer totalIngredients;
 
     public Double getDHAmount() {
         return DoubleRounder.round(DHAmount,3);
@@ -27,6 +28,14 @@ public class Potion {
 
     public void setIngredientList(List<Ingredient> ingredientList) {
         this.potionIngredients = ingredientList;
+    }
+
+    public Integer getTotalIngredients() {
+        return totalIngredients;
+    }
+
+    public void setTotalIngredients(Integer totalIngredients) {
+        this.totalIngredients = totalIngredients;
     }
 
     public void print(){

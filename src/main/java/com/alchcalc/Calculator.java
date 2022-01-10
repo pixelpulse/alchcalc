@@ -67,8 +67,6 @@ public class Calculator {
                     totalIngredients+=1;
                 }
 
-//                System.out.println("testing ingredient:" +ingredient.getName()+ " with count:"+ ingredient.getQuantityInPotion());
-
                 currentPotion = brewPotion(potionIngredients,totalIngredients);
 
                 //We compare the current potion with the base potion, if it's worse we continue
